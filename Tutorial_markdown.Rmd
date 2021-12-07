@@ -1,0 +1,24 @@
+---
+title: "MyTutorial"
+author: "Lucas Lillelund"
+date: "12/5/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Hello, clever coders!
+
+Today, I want to teach ya'll about how we'd go about mapping the population densities of a marine mammal like the Killer Whale (Orcinus orca). In this tutorial, I want to explore, with you, how to import a dataset of species population abundance in the context of Killer Whale pods occurring across the Alaskan coast, in the Pacific Ocean. The data is provided by the open source of the National Oceanic and Atmospheric Administration (NOAA), headquarted in Maryland, USA. 
+
+You can download the data from the repository with the name "KillerWhalePods(NOAA.2017).csv". Using this population abundance data, we will associate these magnitudes with location along the Alaskan coast, in order to produce a map, locating the multiple pod of various sizes along the coast. Exemplar code for how you may import the datafile with your absolute file path after downloading it to your local machine (replacing my path with yours):
+
+```r
+KillerWhaleData <- read.csv("~/Desktop/Uni/Year_4_(Honours)/DataScience/CourseRepository_Lucas.Lillelund/CodingClub/MakeCC_Tutorial/KillerWhalePods(NOAA.2017).csv", sep = ";")
+view(KillerWhaleData)
+str(KillerWhaleData)
+```
+
+
