@@ -100,28 +100,41 @@ hist(KillerWhaleData$Mean.Estimate)
 
 ![~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/OrcaPod.MeanAbundances_Hist.png]("OrcaPod.MeanAbundances_Hist.png")
 
+This histogram here visualises the distribution of the mean estimated Orca abundances for the 27 Orca pods located along the South Alaskan coastline. As the figure depicts, the data seem right-skewed with a frequency peak between 10 and 20 Orcas as the most common pod size. We might presume to distribution to be Gaussian or normal, still. You might beautify this histogram with the following code, using the ggplot2 package:
 
 ```r
-(SouthAlaskanOrcaPods_histogram <- ggplot(KillerWhaleData, aes(x = Mean.Estimate, fill = )) +  
-                   geom_histogram(stat = "count") +
-                   geom_vline(aes(xintercept = mean(Hatching_time)),            
-                              colour = "red", linetype = "dashed", size = 1) +
-                   scale_fill_manual(values = c("#97F7C5", "#4ED973", "#08873D")) +          
-                   # Adding custom colours    
-                   labs(x = "\n Pod.ID", y = "Frequency \n",                   
-                   # Adding x and y axis labels.
-                   # "\n" adds space before x and after y axis text
-                         caption = "\n Fig.1 Response variable (hatching time) is normally
-                         distributed in each treatment group (temperature levels). Red dashed
-                         line shows mean hatching time. n = 60.") +   
-                         # Adding informative figure caption
-                         # caption = "\n Fig.1") +  # Adding caption for figure in panel
-                   theme_frogs() +  # Adding our personalised theme
-                   guides(fill = guide_legend(title = "Temperature level (°C)")))
-                   # Adding an informative legend title
+(SouthAlaskanOrcaPods_histogram <- ggplot(KillerWhaleData, aes(x = Mean.Estimate, fill = subregion)) +  
+    geom_histogram(stat = "count") +
+    geom_vline(aes(xintercept = mean(Mean.Estimate)),            
+               colour = "red", linetype = "dashed", size = 1) +
+    scale_fill_manual(values = c("#97F7C5", "#4ED973", "#08873D")) +          
+    # Adding custom colours    
+    labs(x = "\n Mean Estimate", y = "Frequency \n",                   
+         # Adding axis labels.
+         # "\n" adds space before between the axes text and the figure 
+         caption = "\n Fig.1 The response variable, mean estimate of Orca pod abundance reveals a right-skewed normal distribution with a mean at around 18 Orcas (n=27).") +   
+    # Adding an informative figure caption
+    # caption = "\n Fig.1") +  
+    Theme.Tutorial() +  # Adding the tutorial custom theme 
+    guides(fill = guide_legend(title = "subregion")))
 ```
 
 
+The nicer histogram figure adds an element of aesthetic and visual appeal which can be nice in communicating science. Also there is an additional layter of complexity in that there is a dashed line depicting where the mean of the distribution lies, still pods belong to the two subregions are differentiated and the text is more fitting. 
+
+### Considering Assumptions
+
+... Now, looking back at our ANOVA hypothetical from earlier, in order to in essence test whether Orca pod ID significantly affects the mean estimate of the orca pod size, a linear model is made to describe this functional relationship and in doing so assumes three major things! That is...
+
+1) The model residuals are normally distributed.
+2) The variances assume homoscedasticity. 
+3) Each observation is independent from one another.
+
+We will come back to how we can assess the first two, with visual plots using code in R and also run code to perform certain statistical tests like the shapiro-wilk test for the normal distribution of model residuals and the bartlett test to test for homoscedasticy in model variances. As for the third, this relates to how the observations were made by NOAA in the first place, are monitored species observations/counts over the years related to one another over time, for instance were the observations made in the same season e.g. breeding season? This would clearly affect population size from one year to another. Alternatively, does the ability to conduct species counts, accurately, depend on the surveyor (perhaps not for Orcas, as they are quite easy to identify). However, there might be several retrospective questions to be asked about how the data relates to itself, how much overall constancy there is and how other temporal and spatial factors (e.g. less habitable space for certain pods?) may vary between individual population (pod) abundance estimates. 
+
+## Making a Map!
+
+... Have you ever made your own map? ... You HAVEN'T?!?!?! Well, let me tell you! you... have come to just the right place ;) For this part of the tutorial, I would like to illustrate how you can create a map in R, a map depicting Alaska along with two areas, Prince William Sound and Southeastern Alaska, which are different colors from one another. The two colors represent different total Orca abundance estimates for the two regions, with southeastern Alaska clearly having less pods and less total Orcas.
 
 
 
