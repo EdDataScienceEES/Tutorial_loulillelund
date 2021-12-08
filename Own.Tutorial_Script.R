@@ -4,7 +4,7 @@
 
 #Introduction ----
 
-#Firstly, we need to load packagages for access to the functions in operation
+#Firstly, we need to load packages for access to the functions in operation
 #and the installation of new/un-installed packages
 install.packages("rgbif")
 install.packages("RColorbrewer")
@@ -137,7 +137,15 @@ geom_polygon(aes(fill = "group"), colour = 'gray45', size = 0.1) +
           legend.position = c(0.88, 0.5))) + theme(panel.background = element_rect(fill = 'white'),
 axis.line = element_line(color = NA), 
 axis.text = element_blank(), axis.ticks = element_blank(), 
-axis.title = element_blank())
+axis.title = element_blank()
+  (ggplot(AlaskaCoordsSEA, aes (x = long, y = lat, group = subregion)) + 
+  geom_polygon(aes(fill = "subregion"), colour = "#008B8B", size = 0.1) + 
+  labs(title = "Southeast alaska") + 
+  theme(plot.title = element_text(size = 25 , face = "bold.italic", hjust = 0.5),
+        legend.position = c(0.88, 0.5))) + theme(panel.background = element_rect(fill = 'white'),
+                                                 axis.line = element_line(color = NA), 
+                                                 axis.text = element_blank(), axis.ticks = element_blank(), 
+                                                 axis.title = element_blank())
   
 
 

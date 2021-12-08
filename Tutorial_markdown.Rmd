@@ -1,5 +1,5 @@
 ---
-title: "MyTutorial"
+title: "Mapping Tutorial"
 author: "Lucas Lillelund"
 date: "12/5/2021"
 output: html_document
@@ -9,16 +9,124 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+**Objectives:**
+*1) Accessing and using environmental/ecological data*
+*2) Manipulating an ecological dataset*
+  *a. Proposing a research question*
+*3) Understanding the data*
+  *a. Describing the distribution*
+  *b. Considering assumptions*
+*4) Making a map!*
+*5) Statistical Analysis*
+
+
 Hello, clever coders!
 
-Today, I want to teach ya'll about how we'd go about mapping the population densities of a marine mammal like the Killer Whale (Orcinus orca). In this tutorial, I want to explore, with you, how to import a dataset of species population abundance in the context of Killer Whale pods occurring across the Alaskan coast, in the Pacific Ocean. The data is provided by the open source of the National Oceanic and Atmospheric Administration (NOAA), headquarted in Maryland, USA. 
+Today, I want to briefly teach ya'll about how about some of the basic ways to understand and visualise ecological data. In this tutorial, I want to explore, with you, how to import a dataset of species population abundance, make a basic map depicting depicting the distribution of population abundances and conduct a 1-way ANalysis Of VAriance (ANOVA) to determine whether population abundances have signficantly changed over the course of a monitoring period. 
 
-You can download the data from the repository with the name "KillerWhalePods(NOAA.2017).csv". Using this population abundance data, we will associate these magnitudes with location along the Alaskan coast, in order to produce a map, locating the multiple pod of various sizes along the coast. Exemplar code for how you may import the datafile with your absolute file path after downloading it to your local machine (replacing my path with yours):
+To set the scene, as the Ocean's top-level predator, Killer Whales (Orcinus orca) have become the most widely distributed cetacean, in the world. Orcas forage for food in pods, some of which occur in the Northern Pacific Ocean along the coastline of Alaska. Over the past century or so, this beastly species has become increasingly threatened by human activity and environmental degradation which has led to their protection under the Marine Mammal Protection Act as well as scientific monitoring of their populations by organisations like the National Oceanic and Atmospheric Administration (NOAA), headquartered in Maryland, USA. NOAA fisheries produces regular stock assessment reports for various keystone marine species for various purposes; however, for today we will make use of their 2017 Alaska resident report.
+
+
+## Getting Started
+
+*NB: The following tutorial instructions are based on a mac with the software macOS Big Sur (Version 11.3.1), so specifics may be different for a windows device, yet the fundamentals still apply.*
+
+Fear not, if you are new to the R language or coding in general, as the tutorial is meant for all levels. RStudio, the GUI which allows us to use R can be dowloaded from: https://cran.r-project.org/
+
+Now, open 'RStudio', create a new project under 'File/New Project...'. From here, you'll need to create an R script file to write your code, you can do this via 'File/New File/R Script'. Now, it is good practice to structure and organize your script file, this can be done using simple headings like:
 
 ```r
-KillerWhaleData <- read.csv("~/Desktop/Uni/Year_4_(Honours)/DataScience/CourseRepository_Lucas.Lillelund/CodingClub/MakeCC_Tutorial/KillerWhalePods(NOAA.2017).csv", sep = ";")
-view(KillerWhaleData)
-str(KillerWhaleData)
+# CC Tutorial - Own Tutorial
+# 04/12-21
+# s1865014@ed.ac.uk (@loulillelund)
+# Lucas Lillelund
 ```
 
+You should, of course, replace my personal information wiht your own and otherwise modify to your liking. Next, for an coding endeavour, it is key to understand which 'packages' your are going to be working with. The '#' sign prior to the text facilitates annotation in your script, whereas without this sign, R will understand the text to be a line of code. For those unaware, packages are used to supplement base R functions to enhance the coding process, in some way or another, for example, by computing an output more efficiently. You can use the following packages for this tutorial
+
+```r
+install.packages("rgbif")
+install.packages("RColorbrewer")
+install.packages("ggExtra")
+install.packages("terra")
+
+library(rgbif)
+library(bannerCommenter)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(ggmap)
+library(ggthemes)
+library(ggExtra)
+library(broom)
+library(readr)
+library(terra)
+```
+
+
+
+You can download the modified data from the repository with the name "KillerWhalePods(NOAA.2017).csv". Using this population abundance data, we will associate these magnitudes with location along the Alaskan coast, in order to produce a map, locating the multiple pod of various sizes along the coast. Exemplar code for how you may import the datafile with your absolute file path after downloading it to your local machine (replacing my path with yours):
+
+```r
+KillerWhaleData <- read.csv("~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/KillerWhalePods(NOAA.2017).csv", sep = ";") #Import datafile
+view(KillerWhaleData)
+str(KillerWhaleData) #Examine structure of data
+```
+
+This data file, obtained from NOAA (2021), provides a list of Killer Whale abundance estimates associated with certain recognized pods along the southern coast of Alaska, USA. There are two general regions which the 27 pods are considered local to: "Southeast Alaska" and "Price William Sound", the latter region here being in the southwest of Alaska. 
+
+The third line of code describes structural aspects of the data, including the nature of the variables in each column, namely that qualitative categorical variables such as the 'Pod.ID' and the 'subregion' are what's known as "character" variables versus the quantitative population abundance estimates which are "numeric" variables.
+
+
+## Manipulating an Ecological Dataset 
+
+Now that we have the data and understanding its basic features, we can begin to manipulate it to our fancy. For instance, we can compute the mean values of the different year abundance estimates, rename a variable and remove unwanted datapoints using following lines of code:
+
+```r
+KillerWhaleData$Mean.Estimate <- rowMeans(KillerWhaleData[, c(3, 4, 5)]) #Generating mean values
+KillerWhaleData <- rename(KillerWhaleData, "subregion" = "X") #Renaming variable/column
+KillerWhaleData <- slice(KillerWhaleData, -c(4, 29, 30)) #Removing subregion sums and 'Unassigned to pods' Pod ID
+```
+Hopefully, the above code makes clear sense, as the goal of it is to help with functions and outputs we want to produce later on, for example, the 3 datapoints removed are not classified according to a specific individual Orca pod which would interfere in investigating the following research question.
+
+### Devising a Research Q
+
+With the dataset looking more orderly, we can now decide on a research question to investigate with statistical functions in R! Let's say, we are interested in the differences in Orca abundances across the south Alaskan Orca pods, to determine how variable pod size is in the region. We might hypothesize that there is a significant difference in Orca pod sizes across Orca pods located in either Prince William Sound and Southeast Alaska. For this question, a common statistical test used is a 1-way ANOVA to determine whether or not there is a significant amount of variance between certain data points in a dataset given certain assumptions. We will come back to the actual test later on in the tutorial, so for now let's explore the distribution.
+
+```r
+hist(KillerWhaleData$Mean.Estimate)
+```
+
+![~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/OrcaPod.MeanAbundances_Hist.png]("OrcaPod.MeanAbundances_Hist.png")
+
+
+```r
+(SouthAlaskanOrcaPods_histogram <- ggplot(KillerWhaleData, aes(x = Mean.Estimate, fill = )) +  
+                   geom_histogram(stat = "count") +
+                   geom_vline(aes(xintercept = mean(Hatching_time)),            
+                              colour = "red", linetype = "dashed", size = 1) +
+                   scale_fill_manual(values = c("#97F7C5", "#4ED973", "#08873D")) +          
+                   # Adding custom colours    
+                   labs(x = "\n Pod.ID", y = "Frequency \n",                   
+                   # Adding x and y axis labels.
+                   # "\n" adds space before x and after y axis text
+                         caption = "\n Fig.1 Response variable (hatching time) is normally
+                         distributed in each treatment group (temperature levels). Red dashed
+                         line shows mean hatching time. n = 60.") +   
+                         # Adding informative figure caption
+                         # caption = "\n Fig.1") +  # Adding caption for figure in panel
+                   theme_frogs() +  # Adding our personalised theme
+                   guides(fill = guide_legend(title = "Temperature level (°C)")))
+                   # Adding an informative legend title
+```
+
+
+
+
+
+
+
+References:
+- https://www.fisheries.noaa.gov/species/killer-whale
 
