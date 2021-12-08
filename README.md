@@ -1,3 +1,14 @@
+</u>Brief Description of Tutorial Contents<u>
+
+
+- A Master README file
+- R script containing code required for the tutorial
+- BannerScript used for making subheadings in the script and markdown file.
+- Outputs made in the tutorial
+- The csv data file of Orca abundance estimates required to complete the tutorial
+
+
+
 # tutorial-instructions
 ## Instructions for Tutorial Assignment
 
