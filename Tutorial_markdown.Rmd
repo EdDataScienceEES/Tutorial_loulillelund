@@ -102,6 +102,31 @@ hist(KillerWhaleData$Mean.Estimate)
 
 This histogram here visualises the distribution of the mean estimated Orca abundances for the 27 Orca pods located along the South Alaskan coastline. As the figure depicts, the data seem right-skewed with a frequency peak between 10 and 20 Orcas as the most common pod size. We might presume to distribution to be Gaussian or normal, still. You might beautify this histogram with the following code, using the ggplot2 package:
 
+
+```r
+Theme.Tutorial <- function(){            # Creating a tutorial custom theme function
+  # defining font, font sizes, alignment and text angle
+  theme(plot.title    = element_text(size = 20, 
+                                     face = "bold"),
+        plot.subtitle = element_text(size = 16, 
+                                     face = "plain"),
+        axis.title    = element_text(size = 15,
+                                     face = "bold"),
+        axis.text.x   = element_text(size = 12,
+                                     angle = 45,
+                                     vjust = 1,
+                                     hjust = 1, 
+                                     face = "bold"), 
+        axis.text.y   = element_text(size = 12, 
+                                     face = "bold"),
+        legend.position = "none",                                # Legend removal
+        plot.margin = unit(c(0.5,0.5,0.5,0.5), units = , "cm"),  # Plot margins
+        panel.grid = element_blank())
+}
+```
+
+Firstly, you should run the above in your 'Rstudio' to define a customised theme function for the purpose of this tutorial, this can be used for future visualisations in 'ggplot2' and simplifies the process of having to iteratively improve certain aspects of a figure. Below, lies the code for producing your nice histogram of the mean abundance estimates distribution for the Orca Pods belonging to the Prince William Sound and Southeastern Alaska regions.
+
 ```r
 (SouthAlaskanOrcaPods_histogram <- ggplot(KillerWhaleData, aes(x = Mean.Estimate, fill = subregion)) +  
     geom_histogram(stat = "count") +
@@ -122,6 +147,7 @@ This histogram here visualises the distribution of the mean estimated Orca abund
 
 The nicer histogram figure adds an element of aesthetic and visual appeal which can be nice in communicating science. Also there is an additional layter of complexity in that there is a dashed line depicting where the mean of the distribution lies, still pods belong to the two subregions are differentiated and the text is more fitting. 
 
+
 ### Considering Assumptions
 
 ... Now, looking back at our ANOVA hypothetical from earlier, in order to in essence test whether Orca pod ID significantly affects the mean estimate of the orca pod size, a linear model is made to describe this functional relationship and in doing so assumes three major things! That is...
@@ -137,8 +163,24 @@ We will come back to how we can assess the first two, with visual plots using co
 ... Have you ever made your own map? ... You HAVEN'T?!?!?! Well, let me tell you! you... have come to just the right place ;) For this part of the tutorial, I would like to illustrate how you can create a map in R, a map depicting Alaska along with two areas, Prince William Sound and Southeastern Alaska, which are different colors from one another. The two colors represent different total Orca abundance estimates for the two regions, with southeastern Alaska clearly having less pods and less total Orcas.
 
 
+First, you can run this code:
 
+```r
+WorldCoords <- map_data("world") # Create dataframe for coordinates of all countries
+str(WorldCoords)
+WorldCoords$lat <- as.numeric(WorldCoords$lat)
+WorldCoords$long <- as.numeric(WorldCoords$long)
+```
 
+In order to load the coordinates of the world dataset, check its structure and render the latitude and longitude variables as numeric variables. Then by running
+
+```r
+AlaskaCoords <- filter(WorldCoords, WorldCoords$subregion == "Alaska", preserve = TRUE)
+AlaskaCoordsCln <-subset(AlaskaCoords, long<0)
+
+```
+
+just the latitudinal and longitudinal coordinates of Alaska are kept. 
 
 References:
 - https://www.fisheries.noaa.gov/species/killer-whale
