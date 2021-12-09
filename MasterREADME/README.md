@@ -19,6 +19,9 @@ The tutorial workflow can be described as:
 5) Conducting a 1-way ANOVA
 6) Conclusive remarks
 
+
+Website URL -> https://eddatascienceees.github.io/Tutorial_loulillelund/
+
 # tutorial-instructions
 ## Instructions for Tutorial Assignment
 
