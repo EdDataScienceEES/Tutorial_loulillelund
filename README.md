@@ -1,4 +1,4 @@
-</u>Brief Description of Tutorial Contents<u>
+</u>Brief Description of Tutorial Repository Contents<u>
 
 
 - A Master README file
@@ -8,6 +8,8 @@
 - The csv data file of Orca abundance estimates required to complete the tutorial
 
 
+The tutorial workflow can be described as:
+1) 
 
 # tutorial-instructions
 ## Instructions for Tutorial Assignment
