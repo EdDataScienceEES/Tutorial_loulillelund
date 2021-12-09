@@ -1,6 +1,6 @@
-<center><img src="{{ site.baseurl }}/Tutorial_loulillelund/Outputs/Orcinusorca(NOAA).png" alt="Img"></center>
+<center><img src="https://github.com/EdDataScienceEES/Tutorial_loulillelund/blob/master/Outputs/Orcinusorca(NOAA).png" alt="Img"></center>
 
-![~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/Outputs/Orcinusorca(NOAA).png]("Orcinusorca(NOAA).png")
+!("Orcinusorca(NOAA).png")
 
 
 # Statistics and Cartography in R Tutorial
