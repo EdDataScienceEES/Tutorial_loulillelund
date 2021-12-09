@@ -1,5 +1,4 @@
-<center><img src="https://github.com/EdDataScienceEES/Tutorial_loulillelund/blob/master/Outputs/Orcinusorca(NOAA).png" alt="Img"></center>
-
+_Tutorial by Lucas Lillelund_
 
 ![](Orcinusorca(NOAA).png)
 
@@ -98,6 +97,8 @@ For this question, a common statistical test used is a 1-way ANOVA to determine 
 hist(KillerWhaleData$Mean.Estimate)
 ```
 
+![~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/Outputs/BasicAvgOrcaPodSize_Hist.png]("BasicAvgOrcaPodSize_Hist.png")
+
 This histogram here visualises the distribution of the mean estimated Orca abundances for the 27 Orca pods located along the South Alaskan coastline. As the figure depicts, the data seem right-skewed with a frequency peak between 10 and 20 Orcas as the most common pod size. We might presume to distribution to be Gaussian or normal, still. You might beautify this histogram with the following code, using the ggplot2 package:
 
 
@@ -141,6 +142,8 @@ Firstly, you should run the above in your 'Rstudio' to define a customised theme
     Theme.Tutorial() +  # Adding the tutorial custom theme
     guides(fill = guide_legend(title = "subregion")))
 ```
+
+![~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/Outputs/OrcaPod.MeanAbundances_Hist.png]("OrcaPod.MeanAbundances_Hist.png")
 
 
 The nicer histogram figure adds an element of aesthetic and visual appeal which can be nice in communicating science. Also there is an additional layter of complexity in that there is a dashed line depicting where the mean of the distribution lies, still pods belong to the two subregions are differentiated and the text is more fitting.
@@ -258,6 +261,8 @@ Alas! We have obtained the dataframe we wanted with coordinates of the entire st
     theme(plot.title = element_text(size = 25 , face = "bold.italic", hjust = 0.5)) +
     Theme.Tutorial())
 ```
+
+![~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/Outputs/Alaskawith2subregions_Map.png]("Alaskawith2subregions_Map.png")
 
 
 Brilliant! We've created a basic map of Alaska with the two subregions, Southeastern Alaska and Prince William Sound, highlighted (based on their estimated total Orca abundance). In this sense, the green area on the map represents an area where the average Orca pod size is about 15 Orcas and around the blue area, Orca or Killer Whale pods are larger, on average, at about 34 Orcas per pod. As noted, this is quite a simple map, so one might want additional features or layers of complexity such as other areas with Orca pod statistics or even the average pod size per subregion written on the map, rather than represented by a color. However, I'll leave it to you to explore how this can be done in your own time, as we still have a statistical test to conduct!
