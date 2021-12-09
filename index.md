@@ -1,4 +1,4 @@
-<center><img src="{{ site.baseurl }}/Orcinusorca(NOAA).png" alt="Img"></center>
+<center><img src="{{ site.baseurl }}/Tutorial_loulillelund/Outputs/Orcinusorca(NOAA).png" alt="Img"></center>
 
 # Statistics and Cartography in R Tutorial
 
