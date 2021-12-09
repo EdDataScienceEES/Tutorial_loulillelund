@@ -1,16 +1,7 @@
----
-title: "Mapping Tutorial"
-author: "Lucas Lillelund"
-date: "12/5/2021"
-output: html_document
----
+<center><img src="{{ site.baseurl }}/Orcinusorca(NOAA).png" alt="Img"></center>
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-`~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/Outputs`
 
-**Objectives:**
+**Tutorial Objectives:**
 *1) Access and use environmental/ecological data*
 *2) Manipulate an ecological dataset*
   *a. Propose a research question*
@@ -19,7 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
   *b. Consider ANOVA assumptions*
 *4) Make a map!*
 *5) Conduct a 1-way ANOVA*
-
 
 Hello, clever coders!
 
@@ -309,12 +299,6 @@ and/or https://geocompr.robinlovelace.net/adv-map.html
 Happy coding,
 Lucas Lillelund
 
-<hr>
-<hr>
-
-#### Check out our <a href="https://ourcodingclub.github.io/links/" target="_blank">Useful links</a> page where you can find loads of guides and cheatsheets.
-
-#### If you have any questions about completing this tutorial, please contact us on ourcodingclub@gmail.com
 
 #### <a href="INSERT_SURVEY_LINK" target="_blank">We would love to hear your feedback on the tutorial, whether you did it in the classroom or online!</a>
 
@@ -325,3 +309,20 @@ Lucas Lillelund
 		</h3>
 	</li>
 </ul>
+
+### &nbsp;&nbsp;Subscribe to our mailing list:
+<div class="container">
+	<div class="block">
+        <!-- subscribe form start -->
+		<div class="form-group">
+			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+			<div class="form-group">
+				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
+			</div>
+			<div>
+                        	<button class="btn btn-default" type='submit'>Subscribe</button>
+                    	</div>
+                	</form>
+		</div>
+	</div>
+</div>
