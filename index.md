@@ -6,7 +6,7 @@
 1) Access and use environmental/ecological data
 2) Manipulate an ecological dataset
   a. Propose a research question
-3) Understand the data*
+3) Understand the data
   a. Describing the distribution
   b. Consider ANOVA assumptions
 4) Make a map!
