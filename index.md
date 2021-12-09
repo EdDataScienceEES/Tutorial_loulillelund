@@ -1,15 +1,16 @@
 <center><img src="{{ site.baseurl }}/Orcinusorca(NOAA).png" alt="Img"></center>
 
+#Statistics and Cartography
 
 **Tutorial Objectives:**
-*1) Access and use environmental/ecological data*
-*2) Manipulate an ecological dataset*
-  *a. Propose a research question*
-*3) Understand the data*
-  *a. Describing the distribution*
-  *b. Consider ANOVA assumptions*
-*4) Make a map!*
-*5) Conduct a 1-way ANOVA*
+Access and use environmental/ecological data
+Manipulate an ecological dataset
+  a. Propose a research question
+3) Understand the data
+  a. Describing the distribution
+  b. Consider ANOVA assumptions
+4) Make a map!
+5) Conduct a 1-way ANOVA
 
 Hello, clever coders!
 
