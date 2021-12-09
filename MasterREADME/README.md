@@ -1,15 +1,23 @@
 </u>Brief Description of Tutorial Repository Contents<u>
 
 
-- A Master README file
-- R script containing code required for the tutorial
-- BannerScript used for making subheadings in the script and markdown file.
-- Outputs made in the tutorial
-- The csv data file of Orca abundance estimates required to complete the tutorial
+- A Master README file (MasterREADME)
+- R script containing code required for the tutorial (R.Script(s))
+- Header script used for making subheadings in the script. (R.Script(s))
+- Outputs made in the tutorial (e.g. map, histograms, etc.) (Outputs)
+- The csv data file of Orca abundance estimates required to complete the tutorial (Data)
+- Non-markdown files of the tutorial (Tutorial.Files)
+- A markdown file of the tutorial used for making it a website
 
 
 The tutorial workflow can be described as:
-1) 
+
+1) Introduction and getting started with the NOAA data
+2) Manipulating the Orca pod abundance dataset
+3) Visualising & understanding the distribution of the Orca abundance data
+4) Making a map of where the Orca pods are found in Alaska, USA
+5) Conducting a 1-way ANOVA
+6) Conclusive remarks
 
 # tutorial-instructions
 ## Instructions for Tutorial Assignment

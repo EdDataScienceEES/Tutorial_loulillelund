@@ -6,7 +6,7 @@
 
 ##################################################################
 ##                         Introduction                         ##
-##                      Manipulating Datset                     ##
+##                      Manipulating Dataset                     ##
 ##                          Histograms                          ##
 ##                              MAP                             ##
 ##                     Statistical Analysis                     ##
