@@ -6,8 +6,8 @@
 - Header script used for making subheadings in the script. (R.Script(s))
 - Outputs made in the tutorial (e.g. map, histograms, etc.) (Outputs)
 - The csv data file of Orca abundance estimates required to complete the tutorial (Data)
-- Non-markdown files of the tutorial (Tutorial.Files)
-- A markdown file of the tutorial used for making it a website
+- Files of the tutorial (Tutorial.Files)
+- An index.md file of the tutorial used for making it into a website
 
 
 The tutorial workflow can be described as:
