@@ -1,6 +1,8 @@
 <center><img src="https://github.com/EdDataScienceEES/Tutorial_loulillelund/blob/master/Outputs/Orcinusorca(NOAA).png" alt="Img"></center>
 
-!("Orcinusorca(NOAA).png")
+
+![](Orcinusorca(NOAA).png)
+
 
 
 # Statistics and Cartography in R Tutorial
@@ -14,6 +16,8 @@
   b. Consider ANOVA assumptions
 4) Make a map!
 5) Conduct a 1-way ANOVA
+
+---
 
 Hello, clever coders!
 
