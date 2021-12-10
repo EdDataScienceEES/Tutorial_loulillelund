@@ -323,7 +323,7 @@ data:  Mean.Estimate by subregion
 Bartlett's K-squared = 2.1875, df = 1, p-value = 0.1391
 ```
 
-THe null hypothesis of this test is such that the variances for the treatment groups, Prince William Sound and Southeast Alaska, are the same. Thus, as the p-value obtained is greater than 0.05, we conclude the variances of our linear model do indeed assume homoscedasticity.
+The null hypothesis of this test is such that the variances for the treatment groups, Prince William Sound and Southeast Alaska, are the same. Thus, as the p-value obtained is greater than 0.05, we conclude the variances of our linear model do indeed assume homoscedasticity.
 
 # Conclusion
 
