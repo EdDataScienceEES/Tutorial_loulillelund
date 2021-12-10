@@ -15,6 +15,7 @@ _Tutorial by Lucas Lillelund_
 4) Make a map!
 5) Conduct a 1-way ANOVA, a Shapiro-wilk normality test and a Bartlett test of equal variances
 
+
 ---
 
 Hello, clever coders!

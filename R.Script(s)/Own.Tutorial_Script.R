@@ -1,4 +1,4 @@
-                          # CC Tutorial - Own Tutorial
+           # Data Science Tutorial - Basic Statistics and Cartography in R
                                   # 04/12-21
                           # s1865014@ed.ac.uk (@loulillelund)
                               # Lucas Lillelund
@@ -250,3 +250,10 @@ AvgOrcaPodSizeVSsubregion.ANOVA <- aov(KillerWhaleData$Mean.Estimate~KillerWhale
 summary(AvgOrcaPodSizeVSsubregion.ANOVA)
 
 mean(KillerWhaleData)
+
+#Testing if residuals are normally distributed
+AvgOrcaPodSizeVSsubregion.resids <- resid(AvgOrcaPodSizeVSsubregion.ANOVA)
+shapiro.test(AvgOrcaPodSizeVSsubregion.resids)
+
+#Bartlett test for homoscedastic variances
+bartlett.test(Mean.Estimate~subregion,data=KillerWhaleData)
