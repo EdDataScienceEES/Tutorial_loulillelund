@@ -13,7 +13,7 @@ _Tutorial by Lucas Lillelund_
   a. Describing the distribution
   b. Consider ANOVA assumptions
 4) Make a map!
-5) Conduct a 1-way ANOVA
+5) Conduct a 1-way ANOVA, a Shapiro-wilk normality test and a Bartlett test of equal variances
 
 ---
 
