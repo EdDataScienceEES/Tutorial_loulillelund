@@ -40,7 +40,7 @@ Now, open 'RStudio', create a new project under 'File/New Project...'. From here
 # Lucas Lillelund
 ```
 
-You should, of course, replace my personal information wiht your own and otherwise modify to your liking. Next, for an coding endeavour, it is key to understand which 'packages' your are going to be working with. The '#' sign prior to the text facilitates annotation in your script, whereas without this sign, R will understand the text to be a line of code. For those unaware, packages are used to supplement base R functions to enhance the coding process, in some way or another, for example, by computing an output more efficiently. You can use the following packages for this tutorial.
+You should, of course, replace my personal information with your own and otherwise modify to your liking. Next, for an coding endeavour, it is key to understand which 'packages' your are going to be working with. The '#' sign prior to the text facilitates annotation in your script, whereas without this sign, R will understand the text to be a line of code. For those unaware, packages are used to supplement base R functions to enhance the coding process, in some way or another, for example, by computing an output more efficiently. You can use the following packages for this tutorial.
 
 ```r
 install.packages("rgbif")
