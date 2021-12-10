@@ -1,25 +1,29 @@
-_Tutorial by Lucas Lillelund_
-
-![](Orcinusorca(NOAA).png)
-
-
-# Basic Statistics and Cartography in R Tutorial
-
-**Tutorial Objectives:**
-1) Access and use environmental/ecological data
-2) Manipulate an ecological dataset
-  a. Propose a research question
-3) Understand the data
-  a. Describing the distribution
-  b. Consider ANOVA assumptions
-4) Make a map!
-5) Conduct a 1-way ANOVA
-
 ---
+title: "Mapping Tutorial"
+author: "Lucas Lillelund"
+date: "12/5/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+**Objectives:**
+*1) Access and use environmental/ecological data*
+*2) Manipulate an ecological dataset*
+  *a. Propose a research question*
+*3) Understand the data*
+  *a. Describing the distribution*
+  *b. Consider ANOVA assumptions*
+*4) Make a map!*
+*5) Conduct a 1-way ANOVA*
+
 
 Hello, clever coders!
 
-Today, I want to briefly teach ya'll about how about some of the basic ways to understand and visualise ecological data. In this tutorial, I want to explore, with you, how to import a dataset of species population abundance, make a basic map depicting depicting the distribution of population abundances and conduct a 1-way ANalysis Of VAriance (ANOVA) to determine whether population abundances have signficantly changed over the course of a monitoring period.
+Today, I want to briefly teach ya'll about how about some of the basic ways to understand and visualise ecological data. In this tutorial, I want to explore, with you, how to import a dataset of species population abundance, make a basic map depicting depicting the distribution of population abundances and conduct a 1-way ANalysis Of VAriance (ANOVA) to determine whether population abundances have signficantly changed over the course of a monitoring period. 
 
 To set the scene, as the Ocean's top-level predator, Killer Whales (Orcinus orca) have become the most widely distributed cetacean, in the world. Orcas forage for food in pods, some of which occur in the Northern Pacific Ocean along the coastline of Alaska. Over the past century or so, this beastly species has become increasingly threatened by human activity and environmental degradation which has led to their protection under the Marine Mammal Protection Act as well as scientific monitoring of their populations by organisations like the National Oceanic and Atmospheric Administration (NOAA), headquartered in Maryland, USA. NOAA fisheries produces regular stock assessment reports for various keystone marine species for various purposes; however, for today we will make use of their 2017 Alaska resident report.
 
@@ -68,12 +72,12 @@ view(KillerWhaleData)
 str(KillerWhaleData) #Examine structure of data
 ```
 
-This data file, obtained from NOAA (2021), provides a list of Killer Whale abundance estimates associated with certain recognized pods along the southern coast of Alaska, USA. There are two general regions which the 27 pods are considered local to: "Southeast Alaska" and "Price William Sound", the latter region here being in the southwest of Alaska.
+This data file, obtained from NOAA (2021), provides a list of Killer Whale abundance estimates associated with certain recognized pods along the southern coast of Alaska, USA. There are two general regions which the 27 pods are considered local to: "Southeast Alaska" and "Price William Sound", the latter region here being in the southwest of Alaska. 
 
 The third line of code describes structural aspects of the data, including the nature of the variables in each column, namely that qualitative categorical variables such as the 'Pod.ID' and the 'subregion' are what's known as "character" variables versus the quantitative population abundance estimates which are "numeric" variables.
 
 
-## Manipulating an Ecological Dataset
+## Manipulating an Ecological Dataset 
 
 Now that we have the data and understanding its basic features, we can begin to manipulate it to our fancy. For instance, we can compute the mean values of the different year abundance estimates, rename a variable and remove unwanted datapoints using following lines of code:
 
@@ -96,26 +100,24 @@ For this question, a common statistical test used is a 1-way ANOVA to determine 
 hist(KillerWhaleData$Mean.Estimate)
 ```
 
-![~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/Outputs/BasicAvgOrcaPodSize_Hist.png]("BasicAvgOrcaPodSize_Hist.png")
-
 This histogram here visualises the distribution of the mean estimated Orca abundances for the 27 Orca pods located along the South Alaskan coastline. As the figure depicts, the data seem right-skewed with a frequency peak between 10 and 20 Orcas as the most common pod size. We might presume to distribution to be Gaussian or normal, still. You might beautify this histogram with the following code, using the ggplot2 package:
 
 
 ```r
 Theme.Tutorial <- function(){            # Creating a tutorial custom theme function
   # defining font, font sizes, alignment and text angle
-  theme(plot.title    = element_text(size = 20,
+  theme(plot.title    = element_text(size = 20, 
                                      face = "bold"),
-        plot.subtitle = element_text(size = 16,
+        plot.subtitle = element_text(size = 16, 
                                      face = "plain"),
         axis.title    = element_text(size = 15,
                                      face = "bold"),
         axis.text.x   = element_text(size = 12,
                                      angle = 45,
                                      vjust = 1,
-                                     hjust = 1,
-                                     face = "bold"),
-        axis.text.y   = element_text(size = 12,
+                                     hjust = 1, 
+                                     face = "bold"), 
+        axis.text.y   = element_text(size = 12, 
                                      face = "bold"),
         legend.position = "none",                                # Legend removal
         plot.margin = unit(c(0.5,0.5,0.5,0.5), units = , "cm"),  # Plot margins
@@ -134,18 +136,16 @@ Firstly, you should run the above in your 'Rstudio' to define a customised theme
     # Adding custom colours    
     labs(x = "\n Mean Estimate", y = "Frequency \n",                   
          # Adding axis labels.
-         # "\n" adds space before between the axes text and the figure
+         # "\n" adds space before between the axes text and the figure 
          caption = "\n Fig.1 The response variable, mean estimate of Orca pod abundance reveals a right-skewed normal distribution with a mean at around 18 Orcas (n=27).") +   
     # Adding an informative figure caption
     # caption = "\n Fig.1") +  
-    Theme.Tutorial() +  # Adding the tutorial custom theme
+    Theme.Tutorial() +  # Adding the tutorial custom theme 
     guides(fill = guide_legend(title = "subregion")))
 ```
 
-![~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/Outputs/OrcaPod.MeanAbundances_Hist.png]("OrcaPod.MeanAbundances_Hist.png")
 
-
-The nicer histogram figure adds an element of aesthetic and visual appeal which can be nice in communicating science. Also there is an additional layter of complexity in that there is a dashed line depicting where the mean of the distribution lies, still pods belong to the two subregions are differentiated and the text is more fitting.
+The nicer histogram figure adds an element of aesthetic and visual appeal which can be nice in communicating science. Also there is an additional layter of complexity in that there is a dashed line depicting where the mean of the distribution lies, still pods belong to the two subregions are differentiated and the text is more fitting. 
 
 
 ### Considering Assumptions
@@ -153,12 +153,12 @@ The nicer histogram figure adds an element of aesthetic and visual appeal which 
 ... Now, looking back at our ANOVA hypothetical from earlier, in order to in essence test whether Orca pod ID significantly affects the mean estimate of the orca pod size, a linear model is made to describe this functional relationship and in doing so assumes three major things! That is...
 
 1) The model residuals are normally distributed.
-2) The variances assume homoscedasticity.
+2) The variances assume homoscedasticity. 
 3) Each observation is independent from one another.
 
 We will come back to how we can assess the first two, with visual plots using code in R and also run code to perform certain statistical tests like the shapiro-wilk test for the normal distribution of model residuals and the bartlett test to test for homoscedasticy in model variances.
 
-As for the third, this relates to how the observations were made by NOAA in the first place, are monitored species observations/counts over the years related to one another over time, for instance were the observations made in the same season e.g. breeding season? This would clearly affect population size from one year to another. Alternatively, does the ability to conduct species counts, accurately, depend on the surveyor (perhaps not for Orcas, as they are quite easy to identify). However, there might be several retrospective questions to be asked about how the data relates to itself, how much overall constancy there is and how other temporal and spatial factors (e.g. less habitable space for certain pods?) may vary between individual population (pod) abundance estimates.
+As for the third, this relates to how the observations were made by NOAA in the first place, are monitored species observations/counts over the years related to one another over time, for instance were the observations made in the same season e.g. breeding season? This would clearly affect population size from one year to another. Alternatively, does the ability to conduct species counts, accurately, depend on the surveyor (perhaps not for Orcas, as they are quite easy to identify). However, there might be several retrospective questions to be asked about how the data relates to itself, how much overall constancy there is and how other temporal and spatial factors (e.g. less habitable space for certain pods?) may vary between individual population (pod) abundance estimates. 
 
 ## Making a Map!
 
@@ -199,16 +199,16 @@ AlaskaCoordsSEA <- group_by(AlaskaCoords, lat = "57.58", long = "-135.48") %>%
 #Secondly, for Prince William Sound (PWS)
 AlaskaCoordsPWS <- group_by(AlaskaCoords, lat = "60.63", long = "-147.3") %>%
   transmute(subregion = "Prince William Sound") %>%
-  distinct(subregion)
-
+  distinct(subregion) 
+  
 #Adding the Mean pod size values to the coordinates dataframes for both subregions
 AlaskaCoordsPWS$Mean.Estimate <- c(15.31) #doing the same for the PWS coordinates df
 AlaskaCoordsSEA$Mean.Estimate <- c(33.78) #likewise for the SEA coordinates df
 
 #Giving SEA and PWS a group number
-AlaskaCoordsPWS$group <- c(1)
+AlaskaCoordsPWS$group <- c(1) 
 AlaskaCoordsSEA$group <- c(2)
-
+ 
 ## Adding two extra sets of coordinates for PWS, for mapping purposes
 PWSextracoordA <- data.frame(-146.3, 60.63, "Prince William Sound", 15.31, 1)
 names(PWSextracoordA) <- c("long", "lat", "subregion", "Mean.Estimate", "group")
@@ -248,7 +248,7 @@ AlaskaCoordsCln$Mean.Estimate <- c(0)
 AlaskaCoordsCln <- subset(AlaskaCoordsCln, select = -c(order, region)) #removing order and region columns
 
 ## Create the 'master' dataframe with coordinates for Alaska, as a whole, and the subregions
-Tutorial.Map <- rbind(SEAandPWS_Coords, AlaskaCoordsCln)
+Tutorial.Map <- rbind(SEAandPWS_Coords, AlaskaCoordsCln) 
 ```
 
 Alas! We have obtained the dataframe we wanted with coordinates of the entire state of Alaska combined with the three sets of coordinates for highlight the subregions, Prince William Sound and Southeast Alaska, where our various Orca pods are found. To visualise the map in 'ggplot2' using this map dataframe, feel free to run the following code:
@@ -260,8 +260,6 @@ Alas! We have obtained the dataframe we wanted with coordinates of the entire st
     theme(plot.title = element_text(size = 25 , face = "bold.italic", hjust = 0.5)) +
     Theme.Tutorial())
 ```
-
-![~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/Outputs/Alaskawith2subregions_Map.png]("Alaskawith2subregions_Map.png")
 
 
 Brilliant! We've created a basic map of Alaska with the two subregions, Southeastern Alaska and Prince William Sound, highlighted (based on their estimated total Orca abundance). In this sense, the green area on the map represents an area where the average Orca pod size is about 15 Orcas and around the blue area, Orca or Killer Whale pods are larger, on average, at about 34 Orcas per pod. As noted, this is quite a simple map, so one might want additional features or layers of complexity such as other areas with Orca pod statistics or even the average pod size per subregion written on the map, rather than represented by a color. However, I'll leave it to you to explore how this can be done in your own time, as we still have a statistical test to conduct!
@@ -286,9 +284,9 @@ Residuals                 25 2627.4   105.1
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
-Congratulations! You've just run a 1-way ANOVA! In brief, this summary table informs us about the degrees of freedom of both the independent variable (subregion) and the dependent variable (mean pod abundance), the sum of squares and the mean of the squares (the square being the difference between an individual datapoint and the mean, squared), used for calculating the variance and the F-statistic,.
+Congratulations! You've just run a 1-way ANOVA! In brief, this summary table informs us about the degrees of freedom of both the independent variable (subregion) and the dependent variable (mean pod abundance), the sum of squares and the mean of the squares (the square being the difference between an individual datapoint and the mean, squared), used for calculating the variance and the F-statistic,. 
 
-Also produced is the F-statistic which describes a ratio of the variation between the subregion groups compared to variation within the subregion groups and this facilitates the generation of our p-value which is, in this case, 0.00693. In general, in the traditional frequentist framework, the p-value is compared to an alpha value of either 0.05 or 0.01 whereby if the p-value is less than the alpha value, the null hypothesis can be confidently rejected. Therefore, we can say that the subregion in which the an south Alaskan Orca pod is located, significantly influences its average size.
+Also produced is the F-statistic which describes a ratio of the variation between the subregion groups compared to variation within the subregion groups and this facilitates the generation of our p-value which is, in this case, 0.00693. In general, in the traditional frequentist framework, the p-value is compared to an alpha value of either 0.05 or 0.01 whereby if the p-value is less than the alpha value, the null hypothesis can be confidently rejected. Therefore, we can say that the subregion in which the an south Alaskan Orca pod is located, significantly influences its average size. 
 
 Critically, though there is a large difference in sample sizes (i.e. number of Orca pods) between the two subregions, which may indeed bias results as, for instance, as one large pod size in the Southeast Alaska grouping would have a larger affect on the group mean due to the smaller sample size than would the equivalent value in the Prince William Sound grouping due to the larger sample size. Nonetheless, if we assume these two be all of the Orca pods found in these two regions and the data to be accurate, then we might argue Orca pod size is on average larger in the Southeast Alaskan subregion compared to that of Prince William Sound, perhaps due to less competition from fewer pods, more habitable space in this geographical area and/or more resource availability.
 
@@ -323,7 +321,8 @@ data:  Mean.Estimate by subregion
 Bartlett's K-squared = 2.1875, df = 1, p-value = 0.1391
 ```
 
-THe null hypothesis of this test is such that the variances for the treatment groups, Prince William Sound and Southeast Alaska, are the same. Thus, as the p-value obtained is greater than 0.05, we conclude the variances of our linear model do indeed assume homoscedasticity.
+THe null hypothesis of this test is such that the variances for the treatment groups, Prince William Sound and Southeast Alaska, are the same. Thus, as the p-value obtained is greater than 0.05, we conclude the variances of our linear model do indeed assume homoscedasticity. 
+
 
 # Conclusion
 
@@ -343,6 +342,12 @@ and/or https://geocompr.robinlovelace.net/adv-map.html
 Happy coding,
 Lucas Lillelund
 
+<hr>
+<hr>
+
+#### Check out our <a href="https://ourcodingclub.github.io/links/" target="_blank">Useful links</a> page where you can find loads of guides and cheatsheets.
+
+#### If you have any questions about completing this tutorial, please contact us on ourcodingclub@gmail.com
 
 #### <a href="INSERT_SURVEY_LINK" target="_blank">We would love to hear your feedback on the tutorial, whether you did it in the classroom or online!</a>
 
@@ -354,19 +359,3 @@ Lucas Lillelund
 	</li>
 </ul>
 
-### &nbsp;&nbsp;Subscribe to our mailing list:
-<div class="container">
-	<div class="block">
-        <!-- subscribe form start -->
-		<div class="form-group">
-			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-			<div class="form-group">
-				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
-			</div>
-			<div>
-                        	<button class="btn btn-default" type='submit'>Subscribe</button>
-                    	</div>
-                	</form>
-		</div>
-	</div>
-</div>

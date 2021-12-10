@@ -16,7 +16,7 @@ The tutorial workflow can be described as:
 2) Manipulating the Orca pod abundance dataset
 3) Visualising & understanding the distribution of the Orca abundance data
 4) Making a map of where the Orca pods are found in Alaska, USA
-5) Conducting a 1-way ANOVA
+5) Conducting a 1-way ANOVA, Shapiro-wilk and Bartlett-test
 6) Conclusive remarks
 
 
