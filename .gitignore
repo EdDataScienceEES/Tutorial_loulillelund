@@ -36,8 +36,10 @@ vignettes/*.pdf
 rsconnect/
 
 #Delete .Rproj file
-.Rproj.user/
+.Rproj.user
 
+#Trying to hide/ignore .Rproj
+.Ruserdata
 
 
 
