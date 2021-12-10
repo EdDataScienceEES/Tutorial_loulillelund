@@ -63,7 +63,7 @@ library(terra)
 
 You can download the modified data from the repository with the name "KillerWhalePods(NOAA.2017).csv". Alternatively, you can get all of the resources for this tutorial from <a href="https://github.com/EdDataScienceEES/Tutorial_loulillelund" target="_blank">this GitHub repository</a>. Clone and download the repo as a zip file, then unzip it.
 
- Using this population abundance data, we will associate these magnitudes with location along the Alaskan coast, in order to produce a map, locating the multiple pod of various sizes along the coast. Exemplar code for how you may import the datafile with your absolute file path after downloading it to your local machine (replacing my path with yours):
+Using this population abundance data, we will associate these magnitudes with location along the Alaskan coast, in order to produce a map, locating the multiple pod of various sizes along the coast. Exemplar code for how you may import the datafile with your absolute file path after downloading it to your local machine (replacing my path with yours):
 
 ```r
 KillerWhaleData <- read.csv("~/Desktop/Uni/Year_4_(Honours)/DataScience/Tutorial_loulillelund/KillerWhalePods(NOAA.2017).csv", sep = ";") #Import datafile
